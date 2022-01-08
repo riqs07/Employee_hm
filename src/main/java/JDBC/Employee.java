@@ -1,5 +1,9 @@
+package JDBC;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+///////JDBC IMPLEMENTAION of JDBC.Employee model /////
 
 public class Employee {
     int id;

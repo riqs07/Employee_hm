@@ -1,10 +1,12 @@
+package JDBC;
+
 import java.sql.*;
 
-public class DataConnect {
+public class JDBCDataConnect {
 
     private static Connection conn = null;
 
-    public DataConnect(){
+    public JDBCDataConnect(){
         try {
             getInstance();
         } catch (SQLException e) {
@@ -24,7 +26,7 @@ public class DataConnect {
     public static void main(String[] args) {
         try {
 
-            Connection db = DataConnect.getInstance();
+            Connection db = JDBCDataConnect.getInstance();
             Statement s = db.createStatement();
 
             ResultSet ans = s.executeQuery("select * from employee");

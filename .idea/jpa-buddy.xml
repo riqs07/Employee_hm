@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpaBuddyIdeaProjectConfig" ddlActionDbType="mysql" migrateIndexesAndConstraints="true">
+    <option name="defaultUnitInitialized" value="true" />
+    <option name="reverseEngineeringLastDbConnectionId" value="13424674-97ca-48ce-aa68-3609179adef4" />
+    <option name="reLastEntityCreationPackage" value="src/main/java/PersistSchema" />
+  </component>
+</project>

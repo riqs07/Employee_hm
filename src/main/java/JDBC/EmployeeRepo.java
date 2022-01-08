@@ -1,13 +1,16 @@
+package JDBC;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/// JDBC //
 
-public class Router {
+public class EmployeeRepo {
 
     private static Connection db;
 
-    public Router(Connection db){
+    public EmployeeRepo(Connection db){
         this.db = db;
     }
 
@@ -98,14 +101,15 @@ public class Router {
 
         List<Employee> employees =  getAllEmployees();
 
+
         employees.stream().filter(e -> e.getSalary() > salaryMin).forEach(e -> System.out.println(e.getName()));
     };
 
 
     public static void main(String[] args) throws SQLException {
 
-        Connection c = DataConnect.getInstance();
-        Router api = new Router(c);
+        Connection c = JDBCDataConnect.getInstance();
+        EmployeeRepo api = new EmployeeRepo(c);
 
         api.getAllEmployees();
 
