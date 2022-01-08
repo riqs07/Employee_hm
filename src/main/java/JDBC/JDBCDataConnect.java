@@ -16,7 +16,7 @@ public class JDBCDataConnect {
 
     public static Connection getInstance() throws SQLException {
         if (conn == null){
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/employee_hm","root","wolvesCDQ49!");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/employee_hm","root","PASSWORDGOESHERE!");
 
         }
 
