@@ -3,7 +3,7 @@
 
 
 
-Simple Program to display Database connectivity using JDBC. Uses Dao pattern with a router.
-Examples of Object Mapping, and CRUD functions for back end server.
+Simple Program to explore diffrent types of Java Database connectivity. The tradtional approach with JDBC and the dao pattern. As well as a JPA approach using Hibernate. 
+Examples of Object Mapping,HQL, and CRUD functions for back end server.
 
 Built with maven
