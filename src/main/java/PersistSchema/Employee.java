@@ -61,4 +61,9 @@ public class Employee {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public void showInfo(){
+        System.out.println(this.getName() + " $" + this.getSalary() + this.getAge() + "yrs old");
+    }
+
 }

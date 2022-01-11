@@ -1,22 +1,24 @@
-import PersistSchema.Location;
+import PersistSchema.Employee;
 import jakarta.persistence.*;
-import org.apache.log4j.Logger;
 
 import java.util.List;
 
-public class LocationRepository {
+public class EmployeeRepository {
 
     private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("Employee_DB");
 
 
-
-    public static void addLocation(String address, int sqft, String name){
+    public static void addEmployee(String name,String birthday,int salary,int age){
         EntityManager em = factory.createEntityManager();
 
         try {
             em.getTransaction().begin();
-            Location loc = new Location(address,sqft,name);
-            em.persist(loc);
+            Employee e = new Employee();
+            e.setName(name);
+            e.setBirthday(birthday);
+            e.setAge(age);
+            e.setSalary(salary);
+            em.persist(e);
             em.getTransaction().commit();
 
         } catch (Exception ex){
@@ -30,34 +32,34 @@ public class LocationRepository {
     }
 
 
-    public static Location getLocation(int id) {
+    public static void getEmployee(int id) {
         EntityManager em = factory.createEntityManager();
-        String sql = "SELECT l FROM Location l WHERE l.id = :locID";
+        String sql = "SELECT e FROM Employee e WHERE e.id = :empID";
 
-        TypedQuery<Location> query = em.createQuery(sql,Location.class);
-        query.setParameter("locID",id);
-        Location loc = null;
+        TypedQuery<Employee> query = em.createQuery(sql,Employee.class);
+        query.setParameter("empID",id);
+        Employee e = null;
 
         try {
-            loc = query.getSingleResult();
+            e = query.getSingleResult();
+            e.showInfo();
         } catch (NoResultException ex){
             ex.printStackTrace();
         } finally {
             em.close();
         }
 
-        return loc;
-
     }
-    public static List<Location> getLocations() {
-        EntityManager em = factory.createEntityManager();
-        String sql = "SELECT l FROM Location l WHERE l.id is not null";
 
-        TypedQuery<Location> query = em.createQuery(sql,Location.class);
-        List<Location> locs = null;
+    public static List<Employee> getAllEmployees() {
+        EntityManager em = factory.createEntityManager();
+        String sql = "SELECT e FROM Employee e WHERE e.id is not null";
+
+        TypedQuery<Employee> query = em.createQuery(sql,Employee.class);
+        List<Employee> employees = null;
 
         try {
-            locs = query.getResultList();
+            employees = query.getResultList();
 
 
         } catch (NoResultException ex){
@@ -66,19 +68,19 @@ public class LocationRepository {
             em.close();
         }
 
-        return locs;
+        return employees;
     }
 
-// should i pass in whole obj then deconstruc or leabe be
-    public static void updateLocationName(int id, String name) {
+    public static void updateEmployeeSalary(int id,int salary) {
         EntityManager em = factory.createEntityManager();
 
         try {
             em.getTransaction().begin();
-            Location loc = em.find(Location.class,id);
 
-            loc.setName(name);
-            em.persist(loc);
+            Employee e = em.find(Employee.class,id);
+
+            e.setSalary(salary);
+            em.persist(e);
             em.getTransaction().commit();
 
         } catch (Exception ex){
@@ -91,14 +93,14 @@ public class LocationRepository {
 
     }
 
-    public static void deleteLocation(int id) {
+    public static void deleteEmployee(int id) {
         EntityManager em = factory.createEntityManager();
 
         try {
             em.getTransaction().begin();
-            Location loc = em.find(Location.class,id);
+            Employee e = em.find(Employee.class,id);
 
-            em.remove(loc);
+            em.remove(e);
             em.getTransaction().commit();
 
         } catch (Exception ex){
@@ -113,16 +115,12 @@ public class LocationRepository {
 
 
     public static void main(String[] args) {
+        addEmployee("Terriq","Sept 16",35000,24);
+        updateEmployeeSalary(3,100_000);
+
+        getAllEmployees();
 
 
-//        addLocation("123 Seaseme st",4000,"Elmos House");
-
-//        updateLocation(1," 447 California blvd");
-//        deleteLocation(1);
-               Location xx =  getLocation(2);
-
-xx.getAddress();
     }
-
 
 }
